@@ -1,0 +1,41 @@
+# Telegram Bot Configuration
+# IMPORTANT: Copy this file to config.yaml and fill in your details
+bot_token: "YOUR_BOT_TOKEN_HERE"  # Get from @BotFather on Telegram
+owner_user_id: YOUR_USER_ID_HERE  # Your Telegram user ID (number)
+
+# Monitoring Settings
+default_interval_min: 30
+max_screenshots_to_keep: 50
+
+# Monitoring Mode
+# "isolated" - Create separate browser profiles (original approach)
+# "existing" - Connect to your already-open Chrome browsers (simpler!)
+monitoring_mode: "existing"
+
+# Existing Browser Settings (for monitoring_mode: "existing")
+existing_browsers:
+  chrome_ports:
+    - 9222  # Browser A
+    - 9223  # Browser B  
+    - 9224  # Browser C
+    - 9225  # Browser D
+
+# Kaggle Accounts
+# Add your accounts here after setup
+accounts:
+  A:
+    label: "Person A"
+    url: "https://www.kaggle.com/code/YOUR_NOTEBOOK_A"
+    profile_dir: "./profiles/A"
+  B:
+    label: "Person B"
+    url: "https://www.kaggle.com/code/YOUR_NOTEBOOK_B"
+    profile_dir: "./profiles/B"
+  C:
+    label: "Person C"
+    url: "https://www.kaggle.com/code/YOUR_NOTEBOOK_C"
+    profile_dir: "./profiles/C"
+  D:
+    label: "Person D"
+    url: "https://www.kaggle.com/code/YOUR_NOTEBOOK_D"
+    profile_dir: "./profiles/D"

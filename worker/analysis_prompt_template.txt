@@ -1,0 +1,136 @@
+You are analyzing screenshot {screenshot_num} of {total} from a Kaggle Jupyter notebook.
+
+⚠️⚠️⚠️ CRITICAL WARNING - READ THIS FIRST ⚠️⚠️⚠️
+THE MOST COMMON MISTAKE: Saying COMPLETE when notebook is EMPTY!
+
+EMPTY vs COMPLETE:
+❌ WRONG: "No sections detected" → COMPLETE (THIS IS WRONG!)
+✅ RIGHT: "No sections detected" → EMPTY (code not executed)
+
+❌ WRONG: "No input attached" → COMPLETE (THIS IS WRONG!)
+✅ RIGHT: "No input attached" → EMPTY (nothing attached)
+
+❌ WRONG: Only code visible, no output → COMPLETE (THIS IS WRONG!)
+✅ RIGHT: Only code visible, no output → EMPTY (not executed)
+
+REMEMBER: Code alone ≠ execution. Must see OUTPUT to say RUNNING/COMPLETE!
+
+=== YOUR MISSION ===
+Determine if code has been EXECUTED and what the current STATUS is.
+
+=== STEP-BY-STEP ANALYSIS (Follow IN ORDER) ===
+
+STEP 1: Check EMPTY indicators FIRST (HIGHEST PRIORITY)
+□ "No input attached" → EMPTY
+□ "No sections detected" → EMPTY  
+□ "No sections selected" → EMPTY
+□ ONLY code, NO output → EMPTY
+□ No [1], [2] execution numbers → EMPTY
+□ Empty output area → EMPTY
+□ Empty right panel → EMPTY
+If ANY above → STATUS = EMPTY, HAS_CONTENT = NO, STOP HERE
+
+STEP 2: Check ERROR indicators
+□ "Error:" or "Exception:" or Traceback → ERROR
+□ Red error messages → ERROR
+If ANY above → STATUS = ERROR, HAS_CONTENT = YES
+
+STEP 3: Check RUNNING indicators  
+□ "Epoch X/Y" where X < Y (e.g., "Epoch 3/10") → RUNNING
+□ "[X/Y]" where X < Y (e.g., "[37/100]") → RUNNING
+□ Progress bars not at 100% → RUNNING
+□ "Training..." or "Running..." → RUNNING
+□ Time remaining "< XX:XX" → RUNNING
+□ "X it/s" or "X s/it" → RUNNING
+If ANY above → STATUS = RUNNING, HAS_CONTENT = YES
+
+STEP 4: Check COMPLETE indicators
+□ "Epoch X/Y" where X = Y (e.g., "Epoch 10/10") → COMPLETE
+□ "[X/Y]" where X = Y (e.g., "[100/100]") → COMPLETE
+□ "Complete!" or "Finished!" → COMPLETE
+□ "100%" progress → COMPLETE
+□ "Saved model to..." → COMPLETE
+□ Final results/metrics displayed → COMPLETE
+□ ANY execution output (text/numbers/graphs) → COMPLETE
+If ANY above → STATUS = COMPLETE, HAS_CONTENT = YES
+
+STEP 5: Default
+□ ANY output visible → UNKNOWN, HAS_CONTENT = YES
+□ ONLY code visible → EMPTY, HAS_CONTENT = NO
+
+=== KEY PATTERNS ===
+
+🔴 EMPTY patterns:
+"No input attached", "No sections detected", "Draft Session", no output, no [1][2] numbers
+
+🟢 RUNNING patterns:
+"Epoch 3/10" (3<10), "[37/100]" (37<100), progress bars, "loss: 0.2750", time remaining
+
+🔵 COMPLETE patterns:
+"Epoch 10/10" (10=10), "[100/100]", "Complete!", "Saved model", final metrics, 100%
+
+❌ ERROR patterns:
+"Error:", "Exception:", "Traceback", "RuntimeError", "ValueError", red messages
+
+=== KAGGLE LAYOUT ===
+
+LEFT: Code cells (may have [1][2] if executed, green play if not)
+RIGHT: Panel (shows "No sections detected" if empty, or output files if executed)
+BOTTOM: Output area (execution results, training logs, graphs)
+
+⚠️ CRITICAL: Code alone ≠ execution. Must see OUTPUT to say RUNNING/COMPLETE!
+
+=== RESPONSE FORMAT ===
+
+HAS_CONTENT: [YES/NO]
+STATUS: [EMPTY/RUNNING/COMPLETE/ERROR]
+DETAILS: [1-2 sentences describing what you see with specific numbers/text]
+
+=== EXAMPLES ===
+
+Example 1 - EMPTY (most common case):
+HAS_CONTENT: NO
+STATUS: EMPTY
+DETAILS: Right panel shows "No sections detected". Code cells visible on left but no [1][2] execution numbers. No output below code. Notebook has NOT been executed.
+
+Example 2 - EMPTY (another common case):
+HAS_CONTENT: NO
+STATUS: EMPTY
+DETAILS: Message "No input attached" visible. Code present but no execution output. Green play buttons visible (not executed). Status is EMPTY.
+
+Example 3 - EMPTY (just code):
+HAS_CONTENT: NO
+STATUS: EMPTY
+DETAILS: Only code cells visible with no output area below them. No [1][2] numbers. No training logs. Code has not been run yet. EMPTY status.
+
+Example 4 - Running:
+HAS_CONTENT: YES
+STATUS: RUNNING
+DETAILS: Training at Epoch 3/10 with loss: 0.2750 and accuracy: 85.23%. Progress bar shows 30% complete with 44 minutes remaining.
+
+Example 5 - Complete:
+HAS_CONTENT: YES
+STATUS: COMPLETE
+DETAILS: Training finished at Epoch 10/10 with final accuracy: 93.05%. Model saved to /kaggle/working/model.pth. Output visible below code cells.
+
+Example 6 - Error:
+HAS_CONTENT: YES
+STATUS: ERROR
+DETAILS: RuntimeError: CUDA out of memory. Traceback visible showing error at Epoch 2/10.
+
+⚠️⚠️⚠️ REMEMBER ⚠️⚠️⚠️
+If you see ONLY code and NO output → STATUS = EMPTY
+If you see "No sections detected" → STATUS = EMPTY
+If you see "No input attached" → STATUS = EMPTY
+Code alone is NOT execution!
+
+=== FINAL CHECK ===
+
+Before responding, verify:
+✓ Checked "No sections detected" first?
+✓ Checked for output below code?
+✓ Distinguished code (not executed) from output (executed)?
+✓ Checked Epoch X/Y: is X < Y (running) or X = Y (complete)?
+✓ DETAILS has specific numbers/text?
+
+Now analyze the screenshot:
