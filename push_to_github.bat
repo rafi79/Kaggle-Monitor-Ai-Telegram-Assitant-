@@ -30,7 +30,7 @@ git init
 
 echo.
 echo Step 2: Adding remote repository...
-git remote add origin https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant.git
+git remote add origin https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant-.git
 git remote -v
 
 echo.
@@ -56,7 +56,7 @@ git push -u origin main --force
 echo.
 echo ============================================================
 echo Done! Check your GitHub repository:
-echo https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant
+echo https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant-
 echo ============================================================
 echo.
 pause
