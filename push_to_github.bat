@@ -15,48 +15,35 @@ if exist config.yaml (
 
 echo Current directory: %CD%
 echo.
-echo This script will:
-echo 1. Initialize git repository (if needed)
-echo 2. Add all files (except those in .gitignore)
-echo 3. Commit changes
-echo 4. Push to GitHub
+echo This script will push to:
+echo https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant
 echo.
 echo Press Ctrl+C to cancel, or
 pause
 
 echo.
-echo Step 1: Initializing git repository...
-git init
-
-echo.
-echo Step 2: Adding remote repository...
-git remote add origin https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant-.git
-git remote -v
-
-echo.
-echo Step 3: Adding files...
-git add .
-
-echo.
-echo Step 4: Checking what will be committed...
+echo Checking git status...
 git status
 
 echo.
-echo Step 5: Committing changes...
+echo Adding any new files...
+git add .
+
+echo.
+echo Committing changes...
 set /p commit_message="Enter commit message (or press Enter for default): "
-if "%commit_message%"=="" set commit_message=Update Kaggle Monitor with AI improvements
+if "%commit_message%"=="" set commit_message=Update Kaggle Monitor
 
 git commit -m "%commit_message%"
 
 echo.
-echo Step 6: Pushing to GitHub...
-git branch -M main
-git push -u origin main --force
+echo Pushing to GitHub...
+git push -u origin main
 
 echo.
 echo ============================================================
 echo Done! Check your GitHub repository:
-echo https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant-
+echo https://github.com/rafi79/Kaggle-Monitor-Ai-Telegram-Assitant
 echo ============================================================
 echo.
 pause
